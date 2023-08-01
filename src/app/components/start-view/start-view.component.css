@@ -1,8 +1,0 @@
-@font-face {
-    font-family: 'MyCustomFont';
-    src: url("/home/pacomorando/AngularProyects/master-mind-web/src/assets/fonts/baloo2_semi_bold.ttf") format('truetype');
-  }
-.custom-outline {
-    font-family: 'MyCustomFont';
-    border-width: 3px;
-  }

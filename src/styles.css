@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'bloo2';
+    src: url(".\assets\fonts\baloo2_semi_bold.ttf");
+  }
+.menu-button {
+    font-family: 'bloo2', sans-serif;
+    border-width: 3px;
+  }
