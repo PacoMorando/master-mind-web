@@ -1,8 +1,16 @@
 @font-face {
     font-family: 'bloo2';
     src: url(".\assets\fonts\baloo2_semi_bold.ttf");
+    font-family: 'dyna-semi';
+    src: url(".\assets\fonts\dyna_puff_semi_condensed_regular.ttf");
   }
+
 .menu-button {
     font-family: 'bloo2', sans-serif;
     border-width: 3px;
+  }
+
+.game-over {
+    font-family: 'dyna-semi', sans-serif;
+    /* white-space: nowrap; */
   }
