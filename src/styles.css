@@ -1,17 +1,22 @@
 @font-face {
-    font-family: 'bloo2';
-    src: url(".\assets\fonts\baloo2_semi_bold.ttf");
-    font-family: 'dyna-semi';
-    src: url(".\assets\fonts\dyna_puff_semi_condensed_regular.ttf");
-  }
+  font-family: 'dyna-semi';
+  src: url(".\assets\fonts\dyna_puff_semi_condensed_regular.ttf");
+}
+
+@font-face {
+  font-family: 'bloo2';
+  src: url(".\assets\fonts\baloo2_semi_bold.ttf");
+}
 
 .menu-button {
-    font-family: 'bloo2', sans-serif;
-    border-width: 3px;
-  }
+  font-family: 'bloo2', sans-serif;
+  border-width: 3px;
+  min-width: 120px;
+}
 
 .game-over {
-    font-family: 'dyna-semi', sans-serif;
-    text-align: center;
-    font-size: 55pt;
-  }
+  font-family: 'dyna-semi', sans-serif;
+  text-align: center;
+  font-size: 15vmin;
+  white-space: nowrap;
+}
