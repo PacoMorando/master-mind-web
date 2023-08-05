@@ -1,0 +1,12 @@
+.board-div {
+    border: 2.5px solid black;
+    /* padding: 10px; */
+    border-radius: 10px;
+  }
+
+  .token-empty {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
