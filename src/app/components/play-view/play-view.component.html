@@ -1,1 +1,19 @@
-<p>play-view works!</p>
+<div class="container text-center pt-5 pb-5">
+    <div class="table-responsive mx-5 board-div">
+        <div style="border-bottom: 2px solid black;">SECRET COMIBINATION</div>
+        <table class="table table-borderless" style="font-family: 'dyna-semi';">
+            <tbody *ngFor="let proposedCombinatio of proposedCombinations">
+                <tr>
+                    <td *ngFor="let color of colorsProposed">
+                        <!-- {{color}} -->
+                        <div class="container text-center">
+                            <div class=" text-center token-empty"></div>
+                        </div>
+                    </td>
+                    <td>: :</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="border-top: 2px solid black;">UNDO REDO</div>
+    </div>
+</div>
