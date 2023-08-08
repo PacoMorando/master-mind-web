@@ -10,3 +10,21 @@
     border-radius: 50%;
     border: 1px solid black;
   }
+
+  .token-res-empty {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid black;
+  }
+
+  .token-secret {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: black;
+  }
+
+  .do-button {
+    max-width: 120px;
+  }
