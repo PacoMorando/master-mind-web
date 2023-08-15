@@ -1,30 +1,63 @@
 .board-div {
-    border: 2.5px solid black;
-    /* padding: 10px; */
-    border-radius: 10px;
-  }
+  border: 2.5px solid black;
+  /* padding: 10px; */
+  border-radius: 10px;
+}
 
-  .token-empty {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid black;
-  }
+.token-empty {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
 
-  .token-res-empty {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 1px solid black;
-  }
+.token-res-empty {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid black;
+}
 
-  .token-secret {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background-color: black;
-  }
+.token-secret {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: black;
+}
 
-  .do-button {
-    max-width: 120px;
-  }
+.token-select {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: red;
+}
+
+.do-button {
+  max-width: 120px;
+}
+
+.icon-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.icon-button img {
+  width: 35px; /* Ajusta el tamaño según sea necesario */
+  height: 35px;/* Ajusta el tamaño según sea necesario */
+}
+
+.send-button {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+.send-button img {
+  width: 25px; /* Ajusta el tamaño según sea necesario */
+  height: 25px;/* Ajusta el tamaño según sea necesario */
+}
