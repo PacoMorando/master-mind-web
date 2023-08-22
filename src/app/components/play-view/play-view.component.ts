@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-play-view',
@@ -9,7 +10,7 @@ export class PlayViewComponent {
   colorsProposed:string[];
   proposedCombinations:number[] = new Array(10);//TODO refactorizar con los valores del modelo
 
-  constructor(){
+  constructor(private router: Router){
     this.colorsProposed = ['O','O','O','O'];
   }
 }
