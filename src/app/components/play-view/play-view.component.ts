@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { MastermindSessionService } from 'src/app/services/mastermind-session.service';
 
 @Component({
   selector: 'app-play-view',
@@ -7,10 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./play-view.component.css']
 })
 export class PlayViewComponent {
-  colorsProposed:string[];
-  proposedCombinations:number[] = new Array(10);//TODO refactorizar con los valores del modelo
+  tokenColor = 'token-red';
+  tokenColorOne = 'token-red';
+  colorsProposed: string[];
+  proposedCombinations: number[] = new Array(10);//TODO refactorizar con los valores del modelo
 
-  constructor(private router: Router){
-    this.colorsProposed = ['O','O','O','O'];
+  constructor(private mastermindService: MastermindSessionService) {
+    this.colorsProposed = ['O', 'O', 'O', 'O'];
   }
 }

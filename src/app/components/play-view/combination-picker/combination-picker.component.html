@@ -1,0 +1,47 @@
+<div class="row mx-auto py-2">
+        <div class="col">
+            <button class="icon-button p-1" (click)="previousColor(colorPickers[0])">
+                <img src="../assets/drawable/chevron-up.svg" alt="Icon">
+            </button>
+            <div [ngClass]="colorPickers[0].getColorSelected()" class="mx-auto"></div>
+            <button class="icon-button p-1" (click)="nextColor(colorPickers[0])">
+                <img src="../assets/drawable/chevron-down.svg" alt="Icon">
+            </button>
+        </div>
+        <div class="col">
+            <button class="icon-button p-1" (click)="previousColor(colorPickers[1])">
+                <img src="../assets/drawable/chevron-up.svg" alt="Icon">
+            </button>
+            <div [ngClass]="colorPickers[1].getColorSelected()" class="mx-auto"></div>
+            <button class="icon-button p-1" (click)="nextColor(colorPickers[1])">
+                <img src="../assets/drawable/chevron-down.svg" alt="Icon">
+            </button>
+        </div>
+        <div class="col">
+            <button class="icon-button p-1" (click)="previousColor(colorPickers[2])">
+                <img src="../assets/drawable/chevron-up.svg" alt="Icon">
+            </button>
+            <div [ngClass]="colorPickers[2].getColorSelected()" class="mx-auto"></div>
+            <button class="icon-button p-1" (click)="nextColor(colorPickers[2])">
+                <img src="../assets/drawable/chevron-down.svg" alt="Icon">
+            </button>
+        </div>
+        <div class="col">
+            <button class="icon-button p-1" (click)="previousColor(colorPickers[3])">
+                <img src="../assets/drawable/chevron-up.svg" alt="Icon">
+            </button>
+            <div [ngClass]="colorPickers[3].getColorSelected()" class="mx-auto"></div>
+            <button class="icon-button p-1" (click)="nextColor(colorPickers[3])">
+                <img src="../assets/drawable/chevron-down.svg" alt="Icon">
+            </button>
+        </div>
+        
+      
+
+        <div class="col align-self-center">
+            <button type="button" class="send-button p-1" (click)="addProposedCombination()">
+                <img src="../assets/drawable/paper-airplane.svg" alt="Icon">
+            </button>
+        </div>
+
+    </div>

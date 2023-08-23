@@ -8,6 +8,7 @@ import { ResumeViewComponent } from './components/resume-view/resume-view.compon
 import { HttpClientModule } from '@angular/common/http';
 import { MastermindSessionService } from './services/mastermind-session.service';
 import { Routes, RouterModule } from '@angular/router';
+import { CombinationPickerComponent } from './components/play-view/combination-picker/combination-picker.component';
 
 const routes: Routes = [
   { path: 'start', component: StartViewComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
     StartViewComponent,
     PlayViewComponent,
     ResumeViewComponent,
+    CombinationPickerComponent,
   ],
   imports: [
     RouterModule.forRoot(routes),

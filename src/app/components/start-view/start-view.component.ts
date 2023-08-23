@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { MastermindSessionService } from 'src/app/services/mastermind-session.service';
 
 @Component({
@@ -9,23 +8,15 @@ import { MastermindSessionService } from 'src/app/services/mastermind-session.se
 })
 export class StartViewComponent implements OnInit {
 
-  constructor(private mastermindService: MastermindSessionService, 
-              private router: Router) { }
+  constructor(private mastermindService: MastermindSessionService) {
+  }
 
   ngOnInit(): void {
     this.mastermindService.getStartView();
-    console.log('Se ejecuto el OnInit')
+    console.log('Se ejecuto el OnInit');
   }
-  
-  newGame(){
-    this.mastermindService.newGame().subscribe(
-      data => {
-        this.mastermindService.sessionDTO = data;
-        console.log(data);
-        console.log(this.mastermindService.sessionDTO);
-      }
-    );
-    console.log("Picaste New Game");
-    this.router.navigate(['/play']);//TODO probar si se puede redireccionar desde el servidor
+
+  newGame() {
+    this.mastermindService.newGame();
   }
 }

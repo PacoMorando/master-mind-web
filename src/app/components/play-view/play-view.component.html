@@ -5,7 +5,8 @@
             <div class="mx-auto token-secret"></div>
             <div class="mx-auto token-secret"></div>
             <div class="mx-auto token-secret"></div>
-            <button type="button" class="btn-close" aria-label="Close" style="width: 40px;"></button>
+            <button type="button" class="btn-close" aria-label="Close" style="width: 40px;"
+                routerLink="/resume"></button>
         </div>
         <table class="table table-borderless" style="margin-bottom: 0;">
             <tbody *ngFor="let proposedCombinatio of proposedCombinations">
@@ -38,49 +39,5 @@
             </div>
         </div>
     </div>
-    <div class="row mx-auto py-2">
-        <div class="col">
-            <button class="icon-button p-1">
-                <img src="../assets/drawable/chevron-up.svg" alt="Icon">
-            </button>
-            <div class="mx-auto token-select"></div>
-            <button class="icon-button p-1">
-                <img src="../assets/drawable/chevron-down.svg" alt="Icon">
-            </button>
-        </div>
-        <div class="col">
-            <button class="icon-button p-1">
-                <img src="../assets/drawable/chevron-up.svg" alt="Icon">
-            </button>
-            <div class="mx-auto token-select"></div>
-            <button class="icon-button p-1">
-                <img src="../assets/drawable/chevron-down.svg" alt="Icon">
-            </button>
-        </div>
-        <div class="col">
-            <button class="icon-button p-1">
-                <img src="../assets/drawable/chevron-up.svg" alt="Icon">
-            </button>
-            <div class="mx-auto token-select"></div>
-            <button class="icon-button p-1">
-                <img src="../assets/drawable/chevron-down.svg" alt="Icon">
-            </button>
-        </div>
-        <div class="col">
-            <button class="icon-button p-1">
-                <img src="../assets/drawable/chevron-up.svg" alt="Icon">
-            </button>
-            <div class="mx-auto token-select"></div>
-            <button class="icon-button p-1">
-                <img src="../assets/drawable/chevron-down.svg" alt="Icon">
-            </button>
-        </div>
-        <div class="col align-self-center">
-            <button type="button" class="send-button p-1"  routerLink="/resume">
-            <!-- <button type="button" class="send-button p-1"> -->
-                <img src="../assets/drawable/paper-airplane.svg" alt="Icon">
-            </button>
-        </div>
-       
-    </div>
+    <app-combination-picker></app-combination-picker>
 </div>

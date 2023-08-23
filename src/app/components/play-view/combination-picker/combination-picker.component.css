@@ -1,0 +1,72 @@
+.icon-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.icon-button img {
+    width: 35px;
+    /* Ajusta el tamaño según sea necesario */
+    height: 35px;
+    /* Ajusta el tamaño según sea necesario */
+}
+
+.send-button {
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 2px solid black;
+    cursor: pointer;
+}
+
+.send-button img {
+    width: 25px;
+    /* Ajusta el tamaño según sea necesario */
+    height: 25px;
+    /* Ajusta el tamaño según sea necesario */
+}
+
+
+.r {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #D72D3E;
+}
+
+.g {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #5C9325;
+}
+
+.b {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #47469B;
+}
+
+.c {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #259FA7;
+}
+
+.y {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #BB8E11;
+}
+
+.m {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #DB66C6;
+}
