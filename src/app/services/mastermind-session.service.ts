@@ -23,7 +23,6 @@ export class MastermindSessionService {
     this.getNewGame().subscribe(
       data => {
         this.sessionDTO = data;
-        console.log(data);
         console.log(this.sessionDTO);
       }
     );
@@ -35,17 +34,22 @@ export class MastermindSessionService {
       map(reponse => reponse)
     );
   }
-  
+
   public addProposedCombination(combination: string) {
     this.putProposedCombination(combination).subscribe(
       respose => {
         this.sessionDTO = respose;
         console.log(this.sessionDTO);
+        this.showResults();
       }
-    )
+    );
+  }
+
+  public showResults() {
+    this.httpClient.get(`${this.baseUrl}/showResults`).subscribe();
   }
 
   private putProposedCombination(combination: string): Observable<any> {
-    return this.httpClient.put<string>(`${this.baseUrl}/play`, combination);
+    return this.httpClient.put<string>(`${this.baseUrl}/play/addProposedCombination`, combination);
   }
 }

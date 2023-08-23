@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ColorPicker } from './color-picker';
 import { MastermindSessionService } from 'src/app/services/mastermind-session.service';
+import { Observable, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-combination-picker',
@@ -18,11 +19,11 @@ export class CombinationPickerComponent {
   constructor(private mastermindService: MastermindSessionService) {
   }
 
-  public addProposedCombination() {
+  protected addProposedCombination() {
     this.mastermindService.addProposedCombination(this.getProposedCombination());
     console.log(this.getProposedCombination());
   }
-
+ 
   private getProposedCombination(): string {
     let proposedCombination: string = "";
     for (const ColorPicker of this.colorPickers ) {
