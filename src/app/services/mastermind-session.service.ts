@@ -12,7 +12,6 @@ import { Result } from '../components/play-view/result';
 export class MastermindSessionService {
   private baseUrl = 'http://localhost:8080/mastermind';
   public sessionDTO: SessionDTO;
-  public ses: BehaviorSubject<SessionDTO> = new BehaviorSubject<SessionDTO>(new SessionDTO(false, false, [], false, 0, [], false, '', []));
   private results: BehaviorSubject<Result[]>;
 
   constructor(private httpClient: HttpClient, private router: Router) {
@@ -24,9 +23,6 @@ export class MastermindSessionService {
     let results: Result[] = new Array();
     for (let i = 0; i < this.sessionDTO.currentAttempt; i++) {
       results.push(new Result(this.sessionDTO.proposedCombinations[i], this.sessionDTO.blacks[i], this.sessionDTO.whites[i]));
-    }
-    for (let i = 0; i < 10 - this.sessionDTO.currentAttempt; i++) {//TODO elminar numeros y string magicos y tal vez esta parte la deberia de hacer el play view
-      results.push(new Result('eeee', 0, 0));
     }
     return results;
   }
@@ -56,16 +52,14 @@ export class MastermindSessionService {
     this.putProposedCombination(combination).subscribe(
       respose => {
         this.sessionDTO = respose;
-        console.log(this.sessionDTO);
+        console.log(this.sessionDTO, 'SessionDTO in addProposedCombination');
         this.showResults();
-        console.log('ses en el service', this.ses);
-        this.ses.next(this.sessionDTO);
         this.results.next(this.getResults());
       }
     );
   }
 
-  public showResults() {
+  private showResults() {
     this.httpClient.get(`${this.baseUrl}/showResults`).subscribe();
   }
 
@@ -73,15 +67,7 @@ export class MastermindSessionService {
     return this.httpClient.put<string>(`${this.baseUrl}/play/addProposedCombination`, combination);
   }
 
-  get sesObservable() {
-    return this.ses.asObservable();
-  }
-
   get resultsObservable() {
     return this.results.asObservable();
-  }
-
-  get proposedCombinations(): string[] {
-    return this.ses.value.proposedCombinations;
   }
 }
