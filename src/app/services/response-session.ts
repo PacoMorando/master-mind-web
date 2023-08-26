@@ -1,7 +1,7 @@
 export interface ResponseSession {
     "finished": boolean,
     "undoable": boolean,
-    "whites": string[],
+    "whites": number[],
     "winner": boolean,
     "currentAttempt": number,
     "blacks": number[],

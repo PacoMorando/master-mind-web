@@ -13,7 +13,7 @@
         </div>
         <!-- Board -->
         <table class="table table-borderless" style="margin-bottom: 0;">
-            <tbody *ngFor="let proposedCombination of proposedCombinationsTest">
+            <tbody *ngFor="let proposedCombination of proposedCombinationsTest"> <!-- aqui debo iterar de un objeto results. 'results.proposedCombinations' -->
                 <tr>
                     <td class="align-middle" *ngFor="let color of getColorCombination(proposedCombination)" style="max-width: 30px;">
                         <div>
