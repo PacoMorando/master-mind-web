@@ -14,13 +14,21 @@ export class PlayViewComponent {
   private readonly emptyCombination: string = "eeee";
   protected proposedCombinationsTest: string[] = new Array(this.maxAttemps);
   protected ses$: Observable<SessionDTO>;
- // protected results$: Observable<Result[]>;
+  protected results$: Observable<Result[]>;
+  protected results: Result[] = new Array();
 
   constructor(private mastermindService: MastermindSessionService) {
     this.ses$ = this.mastermindService.sesObservable;
+    this.results$ = this.mastermindService.resultsObservable;
+    this.results$.subscribe(data => {
+      console.log(this.results$);
+      console.log('subscribe del results');
+      this.results = data;
+      console.log(this.results);
+    });
     this.ses$.subscribe(() => {
-      console.log('on init playview ses$:', this.ses$);
-      this.proposedCombinationsTest = this.setProposedCobinationhs();
+      //console.log('on init playview ses$:', this.ses$);
+     // this.proposedCombinationsTest = this.setProposedCobinationhs();
     });
   }
 
@@ -34,7 +42,7 @@ export class PlayViewComponent {
     return proposedCombinations;
   }
 
-  protected getColorCombination(combination: string): string[] {
-    return Array.from(combination);
-  }
+  // protected getColorCombination(combination: string): string[] {
+  //   return Array.from(combination);
+  // }
 }

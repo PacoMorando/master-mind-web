@@ -10,7 +10,7 @@ export class Result {
     private setResult(blacks: number, whites: number): string[] {
         let result: string = '';
         for (let i = 0; i < blacks; i++) {
-            result += 'b';
+            result += 'k';
         }
         for (let i = 0; i < whites; i++) {
             result += 'w';

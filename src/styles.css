@@ -74,18 +74,18 @@
 
 /* Token Results  */
 
-.b {
+.k {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1px solid #D72D3E;
+  background-color: black;
 }
 
 .w {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1px solid #BB8E11;
+  border: 3px solid black;
 }
 
 .f {

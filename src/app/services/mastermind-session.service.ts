@@ -11,11 +11,12 @@ import { Result } from '../components/play-view/result';
 })
 export class MastermindSessionService {
   private baseUrl = 'http://localhost:8080/mastermind';
-  public sessionDTO!: SessionDTO;
+  public sessionDTO: SessionDTO;
   public ses: BehaviorSubject<SessionDTO> = new BehaviorSubject<SessionDTO>(new SessionDTO(false, false, [], false, 0, [], false, '', []));
   private results: BehaviorSubject<Result[]>;
 
   constructor(private httpClient: HttpClient, private router: Router) {
+    this.sessionDTO =  new SessionDTO(false,false,[],false,0,[],false,'',[]);//TODO tengo que refactorizar esta session, si no la inicializo da error de undefinte (null)
     this.results = new BehaviorSubject<Result[]>(this.getResults());
   }
 
@@ -24,7 +25,7 @@ export class MastermindSessionService {
     for (let i = 0; i < this.sessionDTO.currentAttempt; i++) {
       results.push(new Result(this.sessionDTO.proposedCombinations[i], this.sessionDTO.blacks[i], this.sessionDTO.whites[i]));
     }
-    for (let i = 0; i < this.sessionDTO.currentAttempt - 10; i++) {//TODO elminar numeros y string magicos y tal vez esta parte la deberia de hacer el play view
+    for (let i = 0; i < 10 - this.sessionDTO.currentAttempt; i++) {//TODO elminar numeros y string magicos y tal vez esta parte la deberia de hacer el play view
       results.push(new Result('eeee', 0, 0));
     }
     return results;
@@ -57,8 +58,9 @@ export class MastermindSessionService {
         this.sessionDTO = respose;
         console.log(this.sessionDTO);
         this.showResults();
-        this.ses.next(this.sessionDTO);
         console.log('ses en el service', this.ses);
+        this.ses.next(this.sessionDTO);
+        this.results.next(this.getResults());
       }
     );
   }
@@ -73,6 +75,10 @@ export class MastermindSessionService {
 
   get sesObservable() {
     return this.ses.asObservable();
+  }
+
+  get resultsObservable() {
+    return this.results.asObservable();
   }
 
   get proposedCombinations(): string[] {
