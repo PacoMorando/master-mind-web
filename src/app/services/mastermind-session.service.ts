@@ -15,7 +15,7 @@ export class MastermindSessionService {
   private results: BehaviorSubject<Result[]>;
 
   constructor(private httpClient: HttpClient, private router: Router) {
-    this.sessionDTO =  new SessionDTO(false,false,[],false,0,[],false,'',[]);//TODO tengo que refactorizar esta session, si no la inicializo da error de undefinte (null)
+    this.sessionDTO = new SessionDTO(false, false, [], false, 0, [], false, '', []);//TODO tengo que refactorizar esta session, si no la inicializo da error de undefinte (null)
     this.results = new BehaviorSubject<Result[]>(this.getResults());
   }
 
@@ -69,5 +69,21 @@ export class MastermindSessionService {
 
   get resultsObservable() {
     return this.results.asObservable();
+  }
+
+  public undo() {
+    this.httpClient.get<ResponseSession>(`${this.baseUrl}/play/undo`).subscribe(response => {
+      this.sessionDTO = response
+      console.log('UNDO:', this.sessionDTO);
+      this.results.next(this.getResults());
+    });
+  }
+
+  public redo() {
+    this.httpClient.get<ResponseSession>(`${this.baseUrl}/play/redo`).subscribe(response => {
+      this.sessionDTO = response
+      console.log('REDO:', this.sessionDTO);
+      this.results.next(this.getResults())
+    });
   }
 }

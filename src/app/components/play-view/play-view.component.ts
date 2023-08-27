@@ -11,19 +11,33 @@ import { Result } from './result';
 export class PlayViewComponent {
   private readonly maxAttemps: number = 10;
   private readonly emptyCombination: string = "eeee";
-  private results$: Observable<Result[]>;
   protected results: Result[] = new Array();
 
   constructor(private mastermindService: MastermindSessionService) {
-    this.results$ = this.mastermindService.resultsObservable;
-    this.results$.subscribe(data => {
-      console.log('SUBSCRIBE DEL RESULTS$');
-      console.log(this.results$, 'result$ Observable');
+    this.setResults();
+  }
+
+  private setResults() {
+    let results$: Observable<Result[]> = this.mastermindService.resultsObservable;
+    results$.subscribe(data => {
       this.results = data;
+      console.log('SUBSCRIBE DEL RESULTS$');
+      console.log(results$, 'result$ Observable');
       console.log(this.results, 'result Array simple');
-      for (let i = 0; i < this.maxAttemps - this.mastermindService.sessionDTO.currentAttempt; i++) {
-        this.results.push(new Result(this.emptyCombination, 0, 0));
-      }
+      this.setBoard();
     });
+  }
+  private setBoard() {
+    for (let i = 0; i < this.maxAttemps - this.mastermindService.sessionDTO.currentAttempt; i++) {
+      this.results.push(new Result(this.emptyCombination, 0, 0));
+    }
+  }
+
+  protected undo(){
+    this.mastermindService.undo();
+  }
+
+  protected redo(){
+    this.mastermindService.redo();
   }
 }
