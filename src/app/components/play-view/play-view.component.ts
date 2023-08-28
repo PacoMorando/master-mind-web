@@ -9,24 +9,20 @@ import { PlayService } from 'src/app/services/play.service';
   styleUrls: ['./play-view.component.css']
 })
 
-export class PlayViewComponent implements OnInit {
+export class PlayViewComponent {
   private readonly maxAttemps: number = 10;
   private readonly emptyCombination: string = "eeee";
   protected results: Result[] = new Array();
 
+
   constructor(private playService: PlayService) {
-    console.log('LLEGUE AL PLAYVIEW')
-    this.setResults();
-  }
-  ngOnInit(): void {
-    console.log('On init de la play')
+    this.showResults();
   }
 
-  private setResults() {
+  private showResults() {
     let results$: Observable<Result[]> = this.playService.resultsObservable;
     results$.subscribe(data => {
       this.results = data;
-      console.log('SUBSCRIBE DEL RESULTS$');
       console.log(results$, 'result$ Observable');
       console.log(this.results, 'result Array simple');
       this.setBoard();
@@ -37,6 +33,9 @@ export class PlayViewComponent implements OnInit {
     for (let i = 0; i < this.maxAttemps - this.playService.sessionDTO.currentAttempt; i++) {
       this.results.push(new Result(this.emptyCombination, 0, 0));
     }
+  }
+
+  private showFinishDialog() {
   }
 
   protected getSecretCombination(): string[] {
