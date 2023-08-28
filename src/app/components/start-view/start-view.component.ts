@@ -16,7 +16,7 @@ export class StartViewComponent implements OnInit {
     console.log('Se ejecuto el OnInit');
   }
 
-  newGame() {
+  protected newGame() {
     this.mastermindService.newGame();
   }
 }
