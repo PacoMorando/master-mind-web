@@ -27,17 +27,18 @@ export class PlayViewComponent {
       this.setBoard();
     });
   }
+
   private setBoard() {
     for (let i = 0; i < this.maxAttemps - this.mastermindService.sessionDTO.currentAttempt; i++) {
       this.results.push(new Result(this.emptyCombination, 0, 0));
     }
   }
 
-  protected undo(){
+  protected undo() {
     this.mastermindService.undo();
   }
 
-  protected redo(){
+  protected redo() {
     this.mastermindService.redo();
   }
 }

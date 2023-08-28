@@ -13,10 +13,22 @@ export class MastermindSessionService {
   private baseUrl = 'http://localhost:8080/mastermind';
   public sessionDTO: SessionDTO;
   private results: BehaviorSubject<Result[]>;
+  storage: Storage = sessionStorage;
 
   constructor(private httpClient: HttpClient, private router: Router) {
     this.sessionDTO = new SessionDTO(false, false, [], false, 0, [], false, '', []);//TODO tengo que refactorizar esta session, si no la inicializo da error de undefinte (null)
     this.results = new BehaviorSubject<Result[]>(this.getResults());
+
+    let data = JSON.parse(this.storage.getItem('session')!);//"cartItems es la Key (clave)" y se recuperan los datos almacenados en el metodo persistCartItem()
+    console.log('DATA FUERA DEL IF', data)
+    if (data != null) {
+      this.sessionDTO = data;
+    }
+    console.log('SESSIOM SERVICES CONSTRUCT', this.sessionDTO)
+    console.log('DATA', data)
+
+    this.persistSession();
+    this.results.next(this.getResults());
   }
 
   private getResults(): Result[] {
@@ -28,6 +40,7 @@ export class MastermindSessionService {
   }
 
   public getStartView() {
+    this.persistSession();
     this.httpClient.get(`${this.baseUrl}/main`).subscribe();
   }
 
@@ -36,6 +49,7 @@ export class MastermindSessionService {
       data => {
         this.sessionDTO = data;
         console.log(this.sessionDTO);
+        this.persistSession();
       }
     );
 
@@ -55,9 +69,15 @@ export class MastermindSessionService {
         console.log(this.sessionDTO, 'SessionDTO in addProposedCombination');
         this.showResults();
         this.results.next(this.getResults());
+        this.persistSession();
       }
     );
   }
+
+  private persistSession() {
+    this.storage.setItem('session', JSON.stringify(this.sessionDTO));//alamceno los datos en la memoria del explorador
+  }
+
 
   private showResults() {
     this.httpClient.get(`${this.baseUrl}/showResults`).subscribe();
@@ -75,6 +95,7 @@ export class MastermindSessionService {
     this.httpClient.get<ResponseSession>(`${this.baseUrl}/play/undo`).subscribe(response => {
       this.sessionDTO = response
       console.log('UNDO:', this.sessionDTO);
+      this.persistSession();
       this.results.next(this.getResults());
     });
   }
@@ -83,6 +104,7 @@ export class MastermindSessionService {
     this.httpClient.get<ResponseSession>(`${this.baseUrl}/play/redo`).subscribe(response => {
       this.sessionDTO = response
       console.log('REDO:', this.sessionDTO);
+      this.persistSession();
       this.results.next(this.getResults())
     });
   }
