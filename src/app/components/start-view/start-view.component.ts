@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MastermindSessionService } from 'src/app/services/mastermind-session.service';
+import { StartService } from 'src/app/services/start.service';
 
 @Component({
   selector: 'app-start-view',
@@ -8,15 +9,18 @@ import { MastermindSessionService } from 'src/app/services/mastermind-session.se
 })
 export class StartViewComponent implements OnInit {
 
-  constructor(private mastermindService: MastermindSessionService) {
+  constructor(private startService: StartService) {
   }
+  // constructor(private mastermindService: MastermindSessionService) {
+  // }
 
   ngOnInit(): void {
-    this.mastermindService.getStartView();
+    this.startService.getStartView();
     console.log('Se ejecuto el OnInit');
   }
 
   protected newGame() {
-    this.mastermindService.newGame();
+    this.startService.newGame();
   }
+  
 }

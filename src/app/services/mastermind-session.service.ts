@@ -10,102 +10,102 @@ import { Result } from '../components/play-view/result';
   providedIn: 'root'
 })
 export class MastermindSessionService {
-  private baseUrl = 'http://localhost:8080/mastermind';
-  public sessionDTO: SessionDTO;
-  private results: BehaviorSubject<Result[]>;
-  storage: Storage = sessionStorage;
+  // private baseUrl = 'http://localhost:8080/mastermind';
+  // public sessionDTO: SessionDTO;
+  // private results: BehaviorSubject<Result[]>;
+  // storage: Storage = sessionStorage;
 
   constructor(private httpClient: HttpClient, private router: Router) {
-    this.sessionDTO = new SessionDTO(false, false, [], false, 0, [], false, '', []);//TODO tengo que refactorizar esta session, si no la inicializo da error de undefinte (null)
-    this.results = new BehaviorSubject<Result[]>(this.getResults());
+    // this.sessionDTO = new SessionDTO(false, false, [], false, 0, [], false, '', []);//TODO tengo que refactorizar esta session, si no la inicializo da error de undefinte (null)
+    // this.results = new BehaviorSubject<Result[]>(this.getResults());
 
-    let data = JSON.parse(this.storage.getItem('session')!);//"cartItems es la Key (clave)" y se recuperan los datos almacenados en el metodo persistCartItem()
-    console.log('DATA FUERA DEL IF', data)
-    if (data != null) {
-      this.sessionDTO = data;
-    }
-    console.log('SESSIOM SERVICES CONSTRUCT', this.sessionDTO)
-    console.log('DATA', data)
+    // let data = JSON.parse(this.storage.getItem('session')!);//"cartItems es la Key (clave)" y se recuperan los datos almacenados en el metodo persistCartItem()
+    // console.log('DATA FUERA DEL IF', data)
+    // if (data != null) {
+    //   this.sessionDTO = data;
+    // }
+    // console.log('SESSIOM SERVICES CONSTRUCT', this.sessionDTO)
+    // console.log('DATA', data)
 
-    this.persistSession();
-    this.results.next(this.getResults());
+    // this.persistSession();
+    // this.results.next(this.getResults());
   }
 
-  private getResults(): Result[] {
-    let results: Result[] = new Array();
-    for (let i = 0; i < this.sessionDTO.currentAttempt; i++) {
-      results.push(new Result(this.sessionDTO.proposedCombinations[i], this.sessionDTO.blacks[i], this.sessionDTO.whites[i]));
-    }
-    return results;
-  }
+  // private getResults(): Result[] {
+  //   let results: Result[] = new Array();
+  //   for (let i = 0; i < this.sessionDTO.currentAttempt; i++) {
+  //     results.push(new Result(this.sessionDTO.proposedCombinations[i], this.sessionDTO.blacks[i], this.sessionDTO.whites[i]));
+  //   }
+  //   return results;
+  // }
 
-  public getStartView() {
-    this.persistSession();
-    this.httpClient.get(`${this.baseUrl}/main`).subscribe();
-  }
+  // public getStartView() {
+  //   this.persistSession();
+  //   this.httpClient.get(`${this.baseUrl}/main`).subscribe();
+  // }
 
-  public newGame() {
-    this.getNewGame().subscribe(
-      data => {
-        this.sessionDTO = data;
-        console.log(this.sessionDTO);
-        this.persistSession();
-      }
-    );
+  // public newGame() {
+  //   this.getNewGame().subscribe(
+  //     data => {
+  //       this.sessionDTO = data;
+  //       console.log(this.sessionDTO);
+  //       this.persistSession();
+  //     }
+  //   );
 
-    this.router.navigate(['/play']);
-  }
+  //   this.router.navigate(['/play']);
+  // }
 
-  private getNewGame(): Observable<SessionDTO> {
-    return this.httpClient.get<ResponseSession>(`${this.baseUrl}/start/newGame`).pipe(
-      map(reponse => reponse)
-    );
-  }
+  // private getNewGame(): Observable<SessionDTO> {
+  //   return this.httpClient.get<ResponseSession>(`${this.baseUrl}/start/newGame`).pipe(
+  //     map(reponse => reponse)
+  //   );
+  // }
 
-  public addProposedCombination(combination: string) {
-    this.putProposedCombination(combination).subscribe(
-      respose => {
-        this.sessionDTO = respose;
-        console.log(this.sessionDTO, 'SessionDTO in addProposedCombination');
-        this.showResults();
-        this.results.next(this.getResults());
-        this.persistSession();
-      }
-    );
-  }
+  // public addProposedCombination(combination: string) {
+  //   this.putProposedCombination(combination).subscribe(
+  //     respose => {
+  //       this.sessionDTO = respose;
+  //       console.log(this.sessionDTO, 'SessionDTO in addProposedCombination');
+  //       this.showResults();
+  //       this.results.next(this.getResults());
+  //       this.persistSession();
+  //     }
+  //   );
+  // }
 
-  private persistSession() {
-    this.storage.setItem('session', JSON.stringify(this.sessionDTO));//alamceno los datos en la memoria del explorador
-  }
+  // private persistSession() {
+  //   this.storage.setItem('session', JSON.stringify(this.sessionDTO));//alamceno los datos en la memoria del explorador
+  // }
 
 
-  private showResults() {
-    this.httpClient.get(`${this.baseUrl}/showResults`).subscribe();
-  }
+  // private showResults() {
+  //   this.httpClient.get(`${this.baseUrl}/showResults`).subscribe();
+  // }
 
-  private putProposedCombination(combination: string): Observable<any> {
-    return this.httpClient.put<string>(`${this.baseUrl}/play/addProposedCombination`, combination);
-  }
+  // private putProposedCombination(combination: string): Observable<any> {
+  //   return this.httpClient.put<string>(`${this.baseUrl}/play/addProposedCombination`, combination);
+  // }
 
-  get resultsObservable() {
-    return this.results.asObservable();
-  }
+  // get resultsObservable() {
+  //   return this.results.asObservable();
+  // }
 
-  public undo() {
-    this.httpClient.get<ResponseSession>(`${this.baseUrl}/play/undo`).subscribe(response => {
-      this.sessionDTO = response
-      console.log('UNDO:', this.sessionDTO);
-      this.persistSession();
-      this.results.next(this.getResults());
-    });
-  }
+  // public undo() {
+  //   this.httpClient.get<ResponseSession>(`${this.baseUrl}/play/undo`).subscribe(response => {
+  //     this.sessionDTO = response
+  //     console.log('UNDO:', this.sessionDTO);
+  //     this.persistSession();
+  //     this.results.next(this.getResults());
+  //   });
+  // }
 
-  public redo() {
-    this.httpClient.get<ResponseSession>(`${this.baseUrl}/play/redo`).subscribe(response => {
-      this.sessionDTO = response
-      console.log('REDO:', this.sessionDTO);
-      this.persistSession();
-      this.results.next(this.getResults())
-    });
-  }
+  // public redo() {
+  //   this.httpClient.get<ResponseSession>(`${this.baseUrl}/play/redo`).subscribe(response => {
+  //     this.sessionDTO = response
+  //     console.log('REDO:', this.sessionDTO);
+  //     this.persistSession();
+  //     this.results.next(this.getResults())
+  //   });
+  // }
 }

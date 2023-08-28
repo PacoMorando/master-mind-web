@@ -11,11 +11,13 @@ import { ResponseSession } from './response-session';
 export class StartService {
   private baseUrl = 'http://localhost:8080/mastermind';
   public sessionDTO!: SessionDTO;
+  storage: Storage = sessionStorage;
 
   constructor(private httpClient: HttpClient, private router: Router) {
   }
 
   public getStartView() {
+    this.storage.clear();
     this.httpClient.get(`${this.baseUrl}/main`).subscribe();
   }
 

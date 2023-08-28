@@ -1,24 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { MastermindSessionService } from 'src/app/services/mastermind-session.service';
 import { Result } from './result';
+import { PlayService } from 'src/app/services/play.service';
 
 @Component({
   selector: 'app-play-view',
   templateUrl: './play-view.component.html',
   styleUrls: ['./play-view.component.css']
 })
-export class PlayViewComponent {
+
+export class PlayViewComponent implements OnInit {
   private readonly maxAttemps: number = 10;
   private readonly emptyCombination: string = "eeee";
   protected results: Result[] = new Array();
 
-  constructor(private mastermindService: MastermindSessionService) {
+  constructor(private playService: PlayService) {
+    console.log('LLEGUE AL PLAYVIEW')
     this.setResults();
+  }
+  ngOnInit(): void {
+    console.log('On init de la play')
   }
 
   private setResults() {
-    let results$: Observable<Result[]> = this.mastermindService.resultsObservable;
+    let results$: Observable<Result[]> = this.playService.resultsObservable;
     results$.subscribe(data => {
       this.results = data;
       console.log('SUBSCRIBE DEL RESULTS$');
@@ -29,16 +34,23 @@ export class PlayViewComponent {
   }
 
   private setBoard() {
-    for (let i = 0; i < this.maxAttemps - this.mastermindService.sessionDTO.currentAttempt; i++) {
+    for (let i = 0; i < this.maxAttemps - this.playService.sessionDTO.currentAttempt; i++) {
       this.results.push(new Result(this.emptyCombination, 0, 0));
     }
   }
 
+  protected getSecretCombination(): string[] {
+    if (this.playService.isFinished()) {
+      return this.playService.getSecretCombination();
+    }
+    return ['t-s', 't-s', 't-s', 't-s'];
+  }
+
   protected undo() {
-    this.mastermindService.undo();
+    this.playService.undo();
   }
 
   protected redo() {
-    this.mastermindService.redo();
+    this.playService.redo();
   }
 }
