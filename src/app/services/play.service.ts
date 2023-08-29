@@ -45,13 +45,6 @@ export class PlayService {
   }
 
   private showResults() {
-    if (this.sessionDTO.finished) {
-      if (this.sessionDTO.winner) {
-        console.log('Has ganado tio/a :-)');
-      } else {
-        console.log('Has perdido tio/a :-(')
-      }
-    }
     this.httpClient.get(`${this.baseUrl}/showResults`).subscribe();
   }
 
@@ -103,5 +96,16 @@ export class PlayService {
 
   get resultsObservable() {
     return this.results.asObservable();
+  }
+
+  public save(){
+    this.storage.clear();
+    this.router.navigate(['/save']);
+  }
+
+  public resume(){
+    this.storage.clear();
+    this.httpClient.get(`${this.baseUrl}/play/exit`).subscribe();
+    this.router.navigate(['/resume']);
   }
 }

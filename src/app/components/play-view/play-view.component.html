@@ -7,7 +7,7 @@
             <div [ngClass]="this.getSecretCombination()[2]" class="mx-auto"></div>
             <div [ngClass]="this.getSecretCombination()[3]" class="mx-auto"></div>
             <button type="button" class="btn-close" aria-label="Close" style="width: 40px;" data-bs-toggle="modal"
-            data-bs-target="#isFinishedModal"></button>
+            data-bs-target="#saveModal"></button>
             <!-- <button type="button" class="btn-close" aria-label="Close" style="width: 40px;" (click)="showFinishDialog()"></button> -->
         </div>
         <!-- Board -->
@@ -49,21 +49,39 @@
 </div>
 
 
-
-<!-- Modal -->
-<div id="isFinishedModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="isFinishedModalLabel" aria-hidden="true">
+<!-- Finish Modal -->
+<div id="isFinishedModal" class="modal fade" tabindex="-1" aria-labelledby="isFinishedModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">{{finishMessages()}}</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <div class="p-3">
+                <h1 class="modal-title fs-5" id="isFinishedModalLabel">{{finishMessages()}}</h1>
             </div>
             <div class="modal-body">
-                ...
+                    Quieres salir?
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+            <div class="p-2 text-end">
+                <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#saveModal">Yes</button>
+                <button type="button" class="btn" data-bs-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Save Modal -->
+<div id="saveModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="saveModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+                <!-- <h1 class="modal-title fs-5" id="saveModalLabel">{{finishMessages()}}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+            <div class="modal-body">
+                <p  style="font-size: large;">
+                    Quieres guardar?
+                </p>
+            </div>
+            <div class="p-2 text-end">
+                <button type="button" class="btn" (click)="save()" data-bs-dismiss="modal">Yes</button>
+                <button type="button" class="btn"  data-bs-dismiss="modal" (click)="resume()">No</button>
             </div>
         </div>
     </div>

@@ -31,7 +31,7 @@ export class PlayViewComponent implements OnInit {
       console.log(results$, 'result$ Observable');
       console.log(this.results, 'result Array simple');
       this.setBoard();
-      this.showFinishDialog();
+      this.showFinishModal();
     });
   }
 
@@ -41,7 +41,7 @@ export class PlayViewComponent implements OnInit {
     }
   }
 
-  protected showFinishDialog() {
+  protected showFinishModal() {
     if (this.playService.isFinished()) {
       this.isFinishedModal.show();
     }
@@ -68,5 +68,19 @@ export class PlayViewComponent implements OnInit {
 
   protected redo() {
     this.playService.redo();
+  }
+
+  protected exit(){
+    //Este manda la api al saveView se ejecuta en el Modal>Quires salir?>Yes
+  }
+
+  protected resume(){
+    //Este manda la api al resumeView se ejecuta en el Modal>Quires Guardar?>No
+    this.results = new Array();
+    this.playService.resume();
+  }
+
+  protected save(){
+    this.playService.save();
   }
 }
