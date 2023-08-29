@@ -63,6 +63,10 @@ export class PlayService {
     return this.sessionDTO.finished;
   }
 
+  public isWinner(): boolean {
+    return this.sessionDTO.winner;
+  }
+
   private putProposedCombination(combination: string): Observable<any> {
     return this.httpClient.put<string>(`${this.baseUrl}/play/addProposedCombination`, combination);
   }

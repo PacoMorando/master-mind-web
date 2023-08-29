@@ -7,7 +7,7 @@
             <div [ngClass]="this.getSecretCombination()[2]" class="mx-auto"></div>
             <div [ngClass]="this.getSecretCombination()[3]" class="mx-auto"></div>
             <button type="button" class="btn-close" aria-label="Close" style="width: 40px;" data-bs-toggle="modal"
-            data-bs-target="#exampleModal"></button>
+            data-bs-target="#isFinishedModal"></button>
             <!-- <button type="button" class="btn-close" aria-label="Close" style="width: 40px;" (click)="showFinishDialog()"></button> -->
         </div>
         <!-- Board -->
@@ -51,11 +51,11 @@
 
 
 <!-- Modal -->
-<div id="exampleModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div id="isFinishedModal" class="modal fade" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="isFinishedModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">You have Lost/Won</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{finishMessages()}}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">

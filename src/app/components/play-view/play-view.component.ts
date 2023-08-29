@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Result } from './result';
 import { PlayService } from 'src/app/services/play.service';
 
-declare var window:any;
+declare var window: any;
 
 @Component({
   selector: 'app-play-view',
@@ -15,14 +15,13 @@ export class PlayViewComponent implements OnInit {
   private readonly maxAttemps: number = 10;
   private readonly emptyCombination: string = "eeee";
   protected results: Result[] = new Array();
-  private exampleModal: any;
-
+  private isFinishedModal: any;
 
   constructor(private playService: PlayService) {
     this.showResults();
   }
   ngOnInit(): void {
-    this.exampleModal = new window.bootstrap.Modal(document.getElementById("exampleModal"));
+    this.isFinishedModal = new window.bootstrap.Modal(document.getElementById("isFinishedModal"));
   }
 
   private showResults() {
@@ -42,30 +41,18 @@ export class PlayViewComponent implements OnInit {
     }
   }
 
+  protected showFinishDialog() {
+    if (this.playService.isFinished()) {
+      this.isFinishedModal.show();
+    }
+  }
 
-  //  showFinishDialog() {
-  //   console.log('Se ejecuto el finishedDialog');
-  //   const modalFinishDialog = document.getElementById('exampleModal');
-  //   console.log('EVALUACION DEL IF: ',this.playService.isFinished(), modalFinishDialog);
-  //   if (this.playService.isFinished() && modalFinishDialog != null){
-  //     modalFinishDialog.style.display = 'block';
-  //     console.log('Se ejecuto el if del is finished');
-  //   }
-  // }
-
-  //  showFinishDialog() { //ESTA ES UNA ALTERNATIVA, BASICAMENTE ESTOY PONIENDO A MANO TODOS LOS VALORES, PERO VOY A BUSCAR SI HAY UNA CLASE QUE LO HAGA EN UN METODO
-  //   const modalFinishDialog = document.getElementById('exampleModal');
-  //   console.log(modalFinishDialog);
-  //   if (modalFinishDialog != null){
-  //     console.log(modalFinishDialog);
-  //     modalFinishDialog.className = 'modal fade show';
-  //     modalFinishDialog.style.display = 'block';
-  //     modalFinishDialog.role = 'dialog';
-  //     modalFinishDialog.ariaModal = 'true';
-  //   }
-  // }
-  protected showFinishDialog() { //ESTA ES UNA ALTERNATIVA, BASICAMENTE ESTOY PONIENDO A MANO TODOS LOS VALORES, PERO VOY A BUSCAR SI HAY UNA CLASE QUE LO HAGA EN UN METODO
-    this.exampleModal.show();
+  protected finishMessages(): string {
+    if (this.playService.isWinner()) {
+      return "You Have Won :-)";
+    } else {
+      return "You Have Lost :-(";
+    }
   }
 
   protected getSecretCombination(): string[] {
