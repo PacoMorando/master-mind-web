@@ -7,7 +7,8 @@
             <div [ngClass]="this.getSecretCombination()[2]" class="mx-auto"></div>
             <div [ngClass]="this.getSecretCombination()[3]" class="mx-auto"></div>
             <button type="button" class="btn-close" aria-label="Close" style="width: 40px;" data-bs-toggle="modal"
-                data-bs-target="#exampleModal"></button>
+            data-bs-target="#exampleModal"></button>
+            <!-- <button type="button" class="btn-close" aria-label="Close" style="width: 40px;" (click)="showFinishDialog()"></button> -->
         </div>
         <!-- Board -->
         <table class="table table-borderless" style="margin-bottom: 0;">
@@ -54,7 +55,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">You have Lost/Won</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
