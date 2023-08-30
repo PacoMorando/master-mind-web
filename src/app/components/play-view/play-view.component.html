@@ -7,7 +7,7 @@
             <div [ngClass]="this.getSecretCombination()[2]" class="mx-auto"></div>
             <div [ngClass]="this.getSecretCombination()[3]" class="mx-auto"></div>
             <button type="button" class="btn-close" aria-label="Close" style="width: 40px;" data-bs-toggle="modal"
-            data-bs-target="#saveModal"></button>
+            data-bs-target="#saveModal" (click)="exit()"></button>
             <!-- <button type="button" class="btn-close" aria-label="Close" style="width: 40px;" (click)="showFinishDialog()"></button> -->
         </div>
         <!-- Board -->
@@ -80,8 +80,8 @@
                 </p>
             </div>
             <div class="p-2 text-end">
-                <button type="button" class="btn" (click)="save()" data-bs-dismiss="modal">Yes</button>
-                <button type="button" class="btn"  data-bs-dismiss="modal" (click)="resume()">No</button>
+                <button type="button" class="btn" data-bs-dismiss="modal" (click)="save()" >Yes</button>
+                <button type="button" class="btn" data-bs-dismiss="modal" (click)="resume()">No</button>
             </div>
         </div>
     </div>

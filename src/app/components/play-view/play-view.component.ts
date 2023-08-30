@@ -28,8 +28,8 @@ export class PlayViewComponent implements OnInit {
     let results$: Observable<Result[]> = this.playService.resultsObservable;
     results$.subscribe(data => {
       this.results = data;
-      console.log(results$, 'result$ Observable');
-      console.log(this.results, 'result Array simple');
+      console.log('result$ Observable', results$);
+      console.log('result Array simple', this.results);
       this.setBoard();
       this.showFinishModal();
     });
@@ -37,6 +37,7 @@ export class PlayViewComponent implements OnInit {
 
   private setBoard() {
     for (let i = 0; i < this.maxAttemps - this.playService.sessionDTO.currentAttempt; i++) {
+      console.log('SessionDTO Current Attempt', this.playService.sessionDTO.currentAttempt);
       this.results.push(new Result(this.emptyCombination, 0, 0));
     }
   }
@@ -70,17 +71,19 @@ export class PlayViewComponent implements OnInit {
     this.playService.redo();
   }
 
-  protected exit(){
+  protected exit() {
+    this.playService.exit();
     //Este manda la api al saveView se ejecuta en el Modal>Quires salir?>Yes
   }
 
-  protected resume(){
+  protected resume() {
     //Este manda la api al resumeView se ejecuta en el Modal>Quires Guardar?>No
     this.results = new Array();
+    console.log('TO RESUME result Array simple', this.results);
     this.playService.resume();
   }
 
-  protected save(){
+  protected save() {
     this.playService.save();
   }
 }

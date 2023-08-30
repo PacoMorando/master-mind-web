@@ -98,14 +98,25 @@ export class PlayService {
     return this.results.asObservable();
   }
 
+  public exit(){
+    this.storage.clear();
+    this.sessionDTO = new SessionDTO(false, false, [], false, 0, [], false, '', []);//TODO tengo que refactorizar esta session, si no la inicializo da error de undefinte (null)
+    this.httpClient.get(`${this.baseUrl}/play/exit`).subscribe();
+    console.log('exit ejecutado')
+  }
+  
+  public resume(){
+    this.storage.clear();
+    this.sessionDTO = new SessionDTO(false, false, [], false, 0, [], false, '', []);//TODO tengo que refactorizar esta session, si no la inicializo da error de undefinte (null)
+    this.httpClient.get(`${this.baseUrl}/play/exit`).subscribe();
+    this.results = new BehaviorSubject<Result[]>([]);
+    console.log('Resume ejecutado')
+    console.log('RESULTS OBSERVABLES AL SALIR ',this.results)
+    this.router.navigate(['/resume']);
+  }
+
   public save(){
     this.storage.clear();
     this.router.navigate(['/save']);
-  }
-
-  public resume(){
-    this.storage.clear();
-    this.httpClient.get(`${this.baseUrl}/play/exit`).subscribe();
-    this.router.navigate(['/resume']);
   }
 }
