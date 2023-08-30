@@ -18,13 +18,13 @@ export class PlayViewComponent implements OnInit {
   private isFinishedModal: any;
 
   constructor(private playService: PlayService) {
-    this.showResults();
+    this.showBoard();
   }
   ngOnInit(): void {
     this.isFinishedModal = new window.bootstrap.Modal(document.getElementById("isFinishedModal"));
   }
 
-  private showResults() {
+  private showBoard() {
     let results$: Observable<Result[]> = this.playService.resultsObservable;
     results$.subscribe(data => {
       this.results = data;
@@ -42,7 +42,7 @@ export class PlayViewComponent implements OnInit {
     }
   }
 
-  protected showFinishModal() {
+  private showFinishModal() {
     if (this.playService.isFinished()) {
       this.isFinishedModal.show();
     }
@@ -73,11 +73,9 @@ export class PlayViewComponent implements OnInit {
 
   protected exit() {
     this.playService.exit();
-    //Este manda la api al saveView se ejecuta en el Modal>Quires salir?>Yes
   }
 
   protected resume() {
-    //Este manda la api al resumeView se ejecuta en el Modal>Quires Guardar?>No
     this.results = new Array();
     console.log('TO RESUME result Array simple', this.results);
     this.playService.resume();
