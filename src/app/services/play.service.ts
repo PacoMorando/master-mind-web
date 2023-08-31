@@ -98,4 +98,12 @@ export class PlayService {
     this.storage.clear();
     this.router.navigate(['/save']);
   }
+
+  public isUndoable(): boolean{
+    return this.sessionDTO.undoable;
+  }
+
+  public isRedoable(): boolean {
+    return this.sessionDTO.redoable;
+  }
 }

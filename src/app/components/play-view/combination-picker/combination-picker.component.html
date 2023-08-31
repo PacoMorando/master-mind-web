@@ -39,7 +39,7 @@
       
 
         <div class="col align-self-center">
-            <button type="button" class="send-button p-1" (click)="addProposedCombination()">
+            <button type="button" class="send-button p-1" (click)="addProposedCombination()" [disabled]="finished">
                 <img src="../assets/drawable/paper-airplane.svg" alt="Icon">
             </button>
         </div>
