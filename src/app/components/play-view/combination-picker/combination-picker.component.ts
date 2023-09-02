@@ -24,10 +24,10 @@ export class CombinationPickerComponent {
     this.playService.addProposedCombination(this.getProposedCombination());
     console.log(this.getProposedCombination());
   }
- 
+
   private getProposedCombination(): string {
     let proposedCombination: string = "";
-    for (const ColorPicker of this.colorPickers ) {
+    for (const ColorPicker of this.colorPickers) {
       proposedCombination += ColorPicker.getColorSelected();
     }
     return proposedCombination;
@@ -39,6 +39,10 @@ export class CombinationPickerComponent {
 
   protected nextColor(colorPicker: ColorPicker) {
     colorPicker.nextColor();
+  }
+
+  protected get finished(): boolean {
+    return this.playService.isFinished();
   }
 
 }

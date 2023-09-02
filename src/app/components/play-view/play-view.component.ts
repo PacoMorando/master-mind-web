@@ -20,6 +20,7 @@ export class PlayViewComponent implements OnInit {
   constructor(private playService: PlayService) {
     this.showBoard();
   }
+
   ngOnInit(): void {
     this.isFinishedModal = new window.bootstrap.Modal(document.getElementById("isFinishedModal"));
   }
@@ -83,5 +84,13 @@ export class PlayViewComponent implements OnInit {
 
   protected save() {
     this.playService.save();
+  }
+
+  get isUndoable(): boolean {
+    return !this.playService.isUndoable();
+  }
+
+  get isRedoable(): boolean {
+    return !this.playService.isRedoable();
   }
 }

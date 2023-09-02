@@ -35,11 +35,13 @@
         <!-- Undo/Redo -->
         <div class="text-center mx-auto p-2" style="border-top: 2px solid black;">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-dark btn-sm" (click)="undo()">
-                    <img src="../assets/drawable/undo.svg" class="img-fluid mx-auto d-block p-1" alt="undo">
+                <button type="button" class="btn btn-outline-dark btn-sm" (click)="undo()" [disabled]="isUndoable">
+                    <!-- <img src="../assets/drawable/undo.svg" class="img-fluid mx-auto d-block p-1" alt="undo"> -->
+                    <span class="material-symbols-rounded">undo</span>
                 </button>
-                <button type="button" class="btn btn-outline-dark btn-sm" (click)="redo()">
-                    <img src="../assets/drawable/redo.svg" class="img-fluid mx-auto d-block p-1" alt="redo">
+                <button type="button" class="btn btn-outline-dark btn-sm" (click)="redo()" [disabled]="isRedoable">
+                    <!-- <img src="../assets/drawable/redo.svg" class="img-fluid mx-auto d-block p-1" alt="redo"> -->
+                    <span class="material-symbols-rounded">redo</span>
                 </button>
             </div>
         </div>
