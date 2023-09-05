@@ -1,7 +1,8 @@
 <div class="container-fluid text-center pt-5 pb-5">
     <div class="pt-5 pb-5">
 
-        <img src="../assets/drawable/master_mind_logo.svg" class="img-fluid mx-auto d-block  pt-5 pb-5" alt="Master Mind">
+        <img src="../assets/drawable/master_mind_logo.svg" class="img-fluid mx-auto d-block  pt-5 pb-5"
+            alt="Master Mind">
         <div class="container-fluid pt-5 pb-5">
             <div class="pt-5 pb-5">
                 <!-- <button type="button" class="btn btn-outline-dark menu-button" routerLink="/play">NEW GAME</button> -->
@@ -9,9 +10,28 @@
             </div>
 
             <div class="pt-5 pb-5">
-                <button type="button" class="btn btn-outline-dark menu-button">OPEN GAME</button>
+                <button type="button" class="btn btn-outline-dark menu-button" data-bs-toggle="modal"
+                    data-bs-target="#openGameModal">OPEN GAME</button>
             </div>
         </div>
 
+    </div>
+</div>
+
+<!-- Open Modal -->
+<div id="openGameModal" class="modal fade" tabindex="-1" aria-labelledby="isFinishedModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="p-3">
+                <h1 class="modal-title fs-5" id="isFinishedModalLabel">Seleicciona una partida</h1>
+            </div>
+            <div class="modal-body" *ngFor="let gameName of gamesNamesTest">
+                <button type="button" class="list-group-item list-group-item-action"
+                    (click)="nameClicked(gameName)">{{gameName}}</button>
+            </div>
+            <div class="p-2 text-end">
+                <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
     </div>
 </div>
