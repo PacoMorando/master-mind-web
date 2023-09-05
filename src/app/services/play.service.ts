@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ResponseSession } from './response-session';
 import { SessionDTO } from './session-dto';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Result } from '../components/play-view/result';
 
 @Injectable({
@@ -12,7 +12,7 @@ import { Result } from '../components/play-view/result';
 
 export class PlayService {
   private baseUrl = 'http://localhost:8080/mastermind';
-  public sessionDTO: SessionDTO;
+  private sessionDTO: SessionDTO;
   private results: BehaviorSubject<Result[]>;
   storage: Storage = sessionStorage;
 
@@ -31,6 +31,7 @@ export class PlayService {
       respose => {
         this.sessionDTO = respose;
         this.persistSession();
+        console.log(this.sessionDTO);
       }
     );
   }
@@ -99,11 +100,15 @@ export class PlayService {
     this.router.navigate(['/save']);
   }
 
-  public isUndoable(): boolean{
+  public isUndoable(): boolean {
     return this.sessionDTO.undoable;
   }
 
   public isRedoable(): boolean {
     return this.sessionDTO.redoable;
+  }
+
+  public currentAttempt(): number {
+    return this.sessionDTO.currentAttempt;
   }
 }

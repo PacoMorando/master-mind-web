@@ -8,8 +8,7 @@ import { StartService } from 'src/app/services/start.service';
   styleUrls: ['./start-view.component.css']
 })
 export class StartViewComponent implements OnInit {
-  // protected gamesNames: string[] = new Array();
-  protected gamesNamesTest: string[] = [];
+  protected gameNames: string[] = [];
 
   constructor(private startService: StartService) {
   }
@@ -17,21 +16,15 @@ export class StartViewComponent implements OnInit {
   ngOnInit(): void {
     this.startService.getStartView();
     console.log('Se ejecuto el OnInit');
-    // console.log(this.gamesNames);
-    this.startService.getGamesNamesTest().subscribe(data => {
-      this.gamesNamesTest = data;
-      console.log(this.gamesNamesTest);
+    this.startService.getGamesNames().subscribe(data => {
+      this.gameNames = data;
+      console.log(this.gameNames);
     });
   }
 
   protected newGame() {
     this.startService.newGame();
   }
-
-  // protected setGamesNames() {
-  //   console.log(this.startService.getGamesNames());
-  //   this.gamesNames = this.startService.getGamesNames();
-  // }
 
   protected nameClicked(name: string) {
     console.log(`Clickaste: ${name}`);

@@ -37,8 +37,8 @@ export class PlayViewComponent implements OnInit {
   }
 
   private setBoard() {
-    for (let i = 0; i < this.maxAttemps - this.playService.sessionDTO.currentAttempt; i++) {
-      console.log('SessionDTO Current Attempt', this.playService.sessionDTO.currentAttempt);
+    for (let i = 0; i < this.maxAttemps - this.playService.currentAttempt(); i++) {
+      console.log('SessionDTO Current Attempt', this.playService.currentAttempt());
       this.results.push(new Result(this.emptyCombination, 0, 0));
     }
   }
