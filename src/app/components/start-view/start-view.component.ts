@@ -26,8 +26,9 @@ export class StartViewComponent implements OnInit {
     this.startService.newGame();
   }
 
-  protected nameClicked(name: string) {
-    console.log(`Clickaste: ${name}`);
+  protected openGame(gameName: string) {
+    console.log(`Clickaste: ${gameName}`);
+    this.startService.openGame(gameName);
   }
 
 }

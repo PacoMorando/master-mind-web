@@ -30,6 +30,11 @@ export class StartService {
     this.httpClient.get(`${this.baseUrl}/start/newGame`).subscribe();
   }
 
+  public openGame(gameName: string){
+    this.httpClient.get(`${this.baseUrl}/start/openGame?gameName=${gameName}`).subscribe();
+    this.router.navigate(['/play']);
+  }
+
   public getGamesNames(): Observable<string[]> {
     return this.httpClient.get<string[]>(`${this.baseUrl}/start/getGamesNames`).pipe(
       map(response => response));

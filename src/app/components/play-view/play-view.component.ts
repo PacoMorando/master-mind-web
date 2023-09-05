@@ -18,6 +18,7 @@ export class PlayViewComponent implements OnInit {
   private isFinishedModal: any;
 
   constructor(private playService: PlayService) {
+    console.log("Constructor Play View")
     this.showBoard();
   }
 
@@ -29,8 +30,7 @@ export class PlayViewComponent implements OnInit {
     let results$: Observable<Result[]> = this.playService.resultsObservable;
     results$.subscribe(data => {
       this.results = data;
-      console.log('result$ Observable', results$);
-      console.log('result Array simple', this.results);
+      console.log('SHOWBOARD');
       this.setBoard();
       this.showFinishModal();
     });

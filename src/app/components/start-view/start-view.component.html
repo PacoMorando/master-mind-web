@@ -26,8 +26,8 @@
                 <h1 class="modal-title fs-5" id="isFinishedModalLabel">Seleicciona una partida</h1>
             </div>
             <div class="modal-body" *ngFor="let gameName of gameNames">
-                <button type="button" class="list-group-item list-group-item-action"
-                    (click)="nameClicked(gameName)">{{gameName}}</button>
+                <button type="button" class="list-group-item list-group-item-action" data-bs-dismiss="modal"
+                    (click)="openGame(gameName)">{{gameName}}</button>
             </div>
             <div class="p-2 text-end">
                 <button type="button" class="btn" data-bs-dismiss="modal">Cancel</button>

@@ -12,11 +12,12 @@ import { Result } from '../components/play-view/result';
 
 export class PlayService {
   private baseUrl = 'http://localhost:8080/mastermind';
-  private sessionDTO: SessionDTO;
-  private results: BehaviorSubject<Result[]>;
+  private sessionDTO!: SessionDTO;
+  public results!: BehaviorSubject<Result[]>;
   storage: Storage = sessionStorage;
 
   constructor(private httpClient: HttpClient, private router: Router) {
+    console.log("Constructor Play Service")
     this.sessionDTO = new SessionDTO(false, false, [], false, 0, [], false, '', []);//TODO tengo que refactorizar esta session, si no la inicializo da error de undefinte (null)
     this.results = new BehaviorSubject<Result[]>(this.getResults());
     let data = JSON.parse(this.storage.getItem('session')!);//"session es la Key (clave)" y se recuperan los datos almacenados en el metodo persistCartItem()
