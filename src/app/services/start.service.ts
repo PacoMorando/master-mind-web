@@ -22,17 +22,22 @@ export class StartService {
   }
 
   public newGame() {
-    this.getNewGame();
-    this.router.navigate(['/play']);
+    //this.getNewGame();
+    this.httpClient.get(`${this.baseUrl}/start/newGame`).subscribe(data => {
+      console.log('NewGame Data', data);
+      this.router.navigate(['/play']);
+    });
   }
 
-  private getNewGame() {
-    this.httpClient.get(`${this.baseUrl}/start/newGame`).subscribe();
-  }
+  // private getNewGame() {
+  //   this.httpClient.get(`${this.baseUrl}/start/newGame`).subscribe();
+  // }
 
-  public openGame(gameName: string){
-    this.httpClient.get(`${this.baseUrl}/start/openGame?gameName=${gameName}`).subscribe();
-    this.router.navigate(['/play']);
+  public openGame(gameName: string) {
+    this.httpClient.get(`${this.baseUrl}/start/openGame?gameName=${gameName}`).subscribe(data =>{
+      console.log('OpenGame Data',data);
+      this.router.navigate(['/play']);
+    });
   }
 
   public getGamesNames(): Observable<string[]> {

@@ -24,6 +24,9 @@ export class PlayViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.isFinishedModal = new window.bootstrap.Modal(document.getElementById("isFinishedModal"));
+    // this.playService.getBoardDTO().subscribe(data => {
+    //   console.log('PLAY VIEW INIT= ',data);
+    // });
   }
 
   private showBoard() {

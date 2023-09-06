@@ -27,6 +27,10 @@ export class PlayService {
     this.persistSession();
   }
 
+  public getBoardDTO(): Observable<SessionDTO> {
+    return this.httpClient.get<SessionDTO>(`${this.baseUrl}/play`).pipe(map(response => response))
+  }
+
   public addProposedCombination(combination: string) {
     this.httpClient.put<ResponseSession>(`${this.baseUrl}/play/addProposedCombination`, combination).subscribe(
       respose => {

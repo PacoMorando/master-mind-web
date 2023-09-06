@@ -11,7 +11,8 @@ export class ResumeService {
   constructor(private httpClient: HttpClient, private router: Router) { }
 
   public continue() {
-    this.httpClient.get(`${this.baseUrl}/resume/continue`).subscribe();
-    this.router.navigate(['/start']);
+    this.httpClient.get(`${this.baseUrl}/resume/continue`).subscribe(() => {
+      this.router.navigate(['/start']);
+    });
   }
 }
