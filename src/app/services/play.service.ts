@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ResponseSession } from './response-session';
 import { SessionDTO } from './session-dto';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map, tap } from 'rxjs';
 import { Result } from '../components/play-view/result';
 
 @Injectable({
@@ -19,16 +19,15 @@ export class PlayService {
   constructor(private httpClient: HttpClient, private router: Router) {
     console.log("Constructor Play Service")
     this.sessionDTO = new SessionDTO(false, false, [], false, 0, [], false, '', []);//TODO tengo que refactorizar esta session, si no la inicializo da error de undefinte (null)
-    this.results = new BehaviorSubject<Result[]>(this.getResults());
-    let data = JSON.parse(this.storage.getItem('session')!);//"session es la Key (clave)" y se recuperan los datos almacenados en el metodo persistCartItem()
-    if (data != null) {
-      this.sessionDTO = data;
-    }
-    this.persistSession();
   }
 
   public getBoardDTO(): Observable<SessionDTO> {
-    return this.httpClient.get<SessionDTO>(`${this.baseUrl}/play`).pipe(map(response => response))
+    return this.httpClient.get<SessionDTO>(`${this.baseUrl}/play`).pipe(tap(response => {
+      console.log('Operador TAP', response);
+      this.sessionDTO = response;
+      this.results = new BehaviorSubject<Result[]>(this.getResults());
+      this.persistSession();
+    }));
   }
 
   public addProposedCombination(combination: string) {

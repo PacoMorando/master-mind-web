@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Result } from './result';
 import { PlayService } from 'src/app/services/play.service';
+import { SessionDTO } from 'src/app/services/session-dto';
 
 declare var window: any;
 
@@ -19,14 +20,17 @@ export class PlayViewComponent implements OnInit {
 
   constructor(private playService: PlayService) {
     console.log("Constructor Play View")
-    this.showBoard();
+    //this.showBoard();
   }
 
+  //NO ESTOY SEGURO DE ESTE
   ngOnInit(): void {
     this.isFinishedModal = new window.bootstrap.Modal(document.getElementById("isFinishedModal"));
-    // this.playService.getBoardDTO().subscribe(data => {
-    //   console.log('PLAY VIEW INIT= ',data);
-    // });
+    this.playService.getBoardDTO().subscribe(data => {
+      console.log('PLAY VIEW INIT= ', data);
+      this.showBoard();
+    });
+    console.log("INIT Play View");
   }
 
   private showBoard() {
