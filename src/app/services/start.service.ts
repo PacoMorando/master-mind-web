@@ -1,9 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { SessionDTO } from './session-dto';
 import { BehaviorSubject, Observable, map } from 'rxjs';
-import { ResponseSession } from './response-session';
 
 @Injectable({
   providedIn: 'root'

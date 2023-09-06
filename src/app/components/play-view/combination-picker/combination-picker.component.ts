@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { ColorPicker } from './color-picker';
-import { MastermindSessionService } from 'src/app/services/mastermind-session.service';
-import { Observable, switchMap } from 'rxjs';
 import { PlayService } from 'src/app/services/play.service';
 
 @Component({

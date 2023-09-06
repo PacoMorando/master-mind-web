@@ -7,7 +7,6 @@ import { StartViewComponent } from './components/start-view/start-view.component
 import { PlayViewComponent } from './components/play-view/play-view.component';
 import { ResumeViewComponent } from './components/resume-view/resume-view.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MastermindSessionService } from './services/mastermind-session.service';
 import { Routes, RouterModule } from '@angular/router';
 import { CombinationPickerComponent } from './components/play-view/combination-picker/combination-picker.component';
 import { SaveViewComponent } from './components/save-view/save-view.component';
@@ -36,7 +35,7 @@ const routes: Routes = [
     HttpClientModule,
     FormsModule
   ],
-  providers: [MastermindSessionService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
