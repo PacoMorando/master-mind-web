@@ -20,16 +20,11 @@ export class StartService {
   }
 
   public newGame() {
-    //this.getNewGame();
     this.httpClient.get(`${this.baseUrl}/start/newGame`).subscribe(data => {
       console.log('NewGame Data', data);
       this.router.navigate(['/play']);
     });
   }
-
-  // private getNewGame() {
-  //   this.httpClient.get(`${this.baseUrl}/start/newGame`).subscribe();
-  // }
 
   public openGame(gameName: string) {
     this.httpClient.get(`${this.baseUrl}/start/openGame?gameName=${gameName}`).subscribe(data =>{
