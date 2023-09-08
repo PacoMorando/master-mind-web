@@ -33,7 +33,7 @@ export class SaveViewComponent implements OnInit{
     }
   }
 
-  protected cancelSubmit() {
-    this.isNameEmpty = this.nameGame.trim() === '';
+  protected cancel() {
+    this.saveService.cancel();
   }
 }

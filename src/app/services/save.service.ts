@@ -38,4 +38,10 @@ export class SaveService {
     return this.nameExist;
   }
 
+  public cancel(){
+    return this.httpClient.get(`${this.baseUrl}/save/cancel`).subscribe(() => {
+      this.router.navigate(['/resume']);
+    });
+  }
+
 }

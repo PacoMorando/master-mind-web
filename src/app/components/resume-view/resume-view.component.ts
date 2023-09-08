@@ -8,11 +8,13 @@ import { ResumeService } from 'src/app/services/resume.service';
 })
 export class ResumeViewComponent {
 
-  constructor(private resumeService: ResumeService){
-    
-  }
+  constructor(private resumeService: ResumeService){}
 
   protected continue(){
     this.resumeService.continue();
+  }
+
+  protected exit(){
+    this.resumeService.exit();
   }
 }

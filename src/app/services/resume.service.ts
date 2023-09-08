@@ -15,4 +15,10 @@ export class ResumeService {
       this.router.navigate(['/start']);
     });
   }
+
+  public exit (){
+    this.httpClient.get(`${this.baseUrl}/resume/exit`).subscribe(()=>{
+      window.location.href = 'https://github.com/PacoMorando';
+    });
+  }
 }

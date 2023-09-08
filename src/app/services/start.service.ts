@@ -16,7 +16,7 @@ export class StartService {
 
   public getStartView() {
     this.storage.clear();
-    this.httpClient.get(`${this.baseUrl}/main`).subscribe();
+    return this.httpClient.get(`${this.baseUrl}/main`);
   }
 
   public newGame() {
@@ -34,8 +34,7 @@ export class StartService {
   }
 
   public getGamesNames(): Observable<string[]> {
-    return this.httpClient.get<string[]>(`${this.baseUrl}/start/getGamesNames`).pipe(
-      map(response => response));
+    return this.httpClient.get<string[]>(`${this.baseUrl}/start/getGamesNames`).pipe();
   }
 
 

@@ -6,7 +6,7 @@
                 aria-label=".form-control-lg example" [(ngModel)]="nameGame" maxlength="20">
         </div>
         <div class="offset-sm-3 col-sm-6 ps-5 pe-5 text-end">
-            <button type="submit" class="btn save-button" (click)="saveGame()">CANCEL</button>
+            <button type="submit" class="btn save-button" (click)="cancel()">CANCEL</button>
             <button type="button" class="btn save-button" (click)="saveGame()">SAVE</button>
         </div>
         <div *ngIf="isNameEmpty" class="text-danger">Asigna una nombre a la partida</div>

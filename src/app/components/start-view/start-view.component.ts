@@ -13,11 +13,12 @@ export class StartViewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.startService.getStartView();
     console.log('Se ejecuto el OnInit');
-    this.startService.getGamesNames().subscribe(data => {
-      this.gameNames = data;
-      console.log(this.gameNames);
+    this.startService.getStartView().subscribe(()=> {
+      this.startService.getGamesNames().subscribe(data => {
+        this.gameNames = data;
+        console.log(this.gameNames);
+      });
     });
   }
 
@@ -29,5 +30,4 @@ export class StartViewComponent implements OnInit {
     console.log(`Clickaste: ${gameName}`);
     this.startService.openGame(gameName);
   }
-
 }
