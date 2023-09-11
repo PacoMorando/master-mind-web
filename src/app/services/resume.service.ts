@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   providedIn: 'root'
 })
 export class ResumeService {
-  private baseUrl = 'http://localhost:8080/mastermind';
+  private baseUrl = 'http://localhost:8080/api/mastermind';
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 

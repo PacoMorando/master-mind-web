@@ -7,7 +7,7 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class SaveService {
-  private baseUrl = 'http://localhost:8080/mastermind';
+  private baseUrl = 'http://localhost:8080/api/mastermind';
   private nameExist: boolean = false;
 
   constructor(private httpClient: HttpClient, private router: Router) { }

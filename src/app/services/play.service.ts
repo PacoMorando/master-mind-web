@@ -11,7 +11,7 @@ import { BoardDTO } from './board-dto';
 })
 
 export class PlayService {
-  private baseUrl = 'http://localhost:8080/mastermind';
+  private baseUrl = 'http://localhost:8080/api/mastermind';
   private boardDTO!: BoardDTO;
   private results!: BehaviorSubject<Result[]>;
   private storage: Storage = sessionStorage;

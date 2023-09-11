@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, map } from 'rxjs';
   providedIn: 'root'
 })
 export class StartService {
-  private baseUrl = 'http://localhost:8080/mastermind';
+  private baseUrl = 'http://localhost:8080/api/mastermind';
   private storage: Storage = sessionStorage;
   protected gamesNames!: BehaviorSubject<string[]>;
 
