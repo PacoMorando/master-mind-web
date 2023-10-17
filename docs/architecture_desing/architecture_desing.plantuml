@@ -1,0 +1,87 @@
+@startuml analysis-architecture
+!theme plain
+
+package analysis{
+    boundary XView
+    control XController
+    entity XDAO
+    entity XModel
+}
+
+package front <<Angular>> {
+    entity Template <<HTML>>
+    boundary Style <<CSS>>
+    control ViewComponents <<Typscript>>
+    control Services <<Typscript>>
+    control BoardDTO <<Typscript>>
+    control HTTPService <<Typscript>>
+}
+
+package backend <<SpringBoot>> {
+    control RestViews <<@RestController>>
+    control ApiMasterMind
+    entity BoardDTO_Java
+
+    entity SessionAPIDAO
+    entity GameDAO <<@Repository>>
+    entity GameEntity
+    entity PropCombDAO <<@Repository>>
+    entity PropCombEntity
+
+    package app-core <<Maven dependency>> {
+        entity CoreSessionDAO <<abstract>>
+        boundary CoreViews <<abstract>>
+        control CoreControllers
+        entity CoreModels
+    }
+}
+
+
+' analysis
+XView --> XController
+XView --> XModel
+XController --> XModel
+XController --> XDAO
+
+' front
+ViewComponents -left-> Template
+Template --> Style
+ViewComponents --> Services
+Services --> BoardDTO
+Services *--> HTTPService
+
+ViewComponents .up.> XView
+Template .up.> XView
+Style .up.> XView
+BoardDTO ..> BoardDTO_Java
+
+Services ..> RestViews
+Services .up.> XController
+
+' backend
+ApiMasterMind --> RestViews
+ApiMasterMind -right-> SessionAPIDAO
+RestViews --> BoardDTO_Java
+
+SessionAPIDAO --> GameDAO
+SessionAPIDAO --> PropCombDAO
+GameDAO --> GameEntity
+PropCombDAO --> PropCombEntity
+
+RestViews --> CoreControllers
+RestViews --> CoreViews
+SessionAPIDAO --> CoreSessionDAO
+GameEntity ..> XModel
+PropCombEntity ..> XModel
+
+
+' app-core
+CoreViews --> CoreControllers
+CoreViews --> CoreModels
+CoreControllers --> CoreModels
+CoreControllers --> CoreSessionDAO
+
+CoreViews ..> XView
+CoreControllers ..> XController
+CoreModels ..> XModel
+CoreSessionDAO ..> XDAO

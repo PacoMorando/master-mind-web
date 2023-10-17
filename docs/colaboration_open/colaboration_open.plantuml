@@ -1,0 +1,48 @@
+@startuml colaboration-open
+!theme plain
+
+actor player
+
+package android-views {
+    agent startView
+    agent openDialog
+    agent savedGamesRecyclerView
+}
+
+player -right-> startView :open()
+startView --> openDialog :show()
+openDialog --> savedGamesRecyclerView
+
+package controllers <<master-mind-core dependency>> {
+    agent startController
+}
+
+openDialog -left-> startController :start(gameSelectedTitle)
+savedGamesRecyclerView -left-> startController :getGamesNames()
+
+package dao {
+    agent sessionImpDAO
+    agent gameDAO
+    agent propCombDAO
+    agent gameDTO
+}
+
+package models <<master-mind-core dependency>>{
+    agent session
+    agent sessionDTO
+    agent game
+}
+
+startController --> session :next()
+startController --> sessionImpDAO :load(gameSelectedTitle)\nassociate(this.session)
+sessionImpDAO --> gameDAO :getGame()
+sessionImpDAO --> propCombDAO :getPropCombs()
+sessionImpDAO --> sessionDTO :load(game)
+sessionImpDAO --> gameDTO :getLoad(game)
+
+
+sessionDTO -right-> session :load(game) 
+sessionDTO ..> game 
+gameDTO -right-> game :new()
+
+@enduml

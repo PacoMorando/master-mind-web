@@ -1,27 +1,38 @@
-# MasterMindWeb
+# Master Mind Web
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.6.
+### Index
+- **[Description](#description)**
+- **[Documentation](#documentation)**
+  - **[Architecture Design](#architecture-design)**
+  - **[Colaboration Diagram 'Open Case'](#colaboration-diagram-open-case)**
+  - **[ProposeCombination Case](#colaboration-diagram-proposecombination-case)**
+- **[User Interface](#user-interface)**
 
-## Development server
+## Description
+In the web distribution, I developed a Rest API using SpringBoot. The API implements the view interface from the core (maven dependency) as "end points" that are exposed to be consumed by an application website that was developed in Angular. In this way the logic and control of execution flow remains in the backend.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+![MovilClient diagram](docs/master_mind_web_client.svg)
 
-## Code scaffolding
+**[Here you can check the API code](https://github.com/PacoMorando/master-mind-api)**
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**[Here you can check the core application documentation](https://github.com/PacoMorando/master-mind-core)**
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Documentation
 
-## Running unit tests
+### Architecture Design
+![Architecture Design](docs/architecture_desing/analysis-architecture.svg)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Colaboration Diagram 'Open Case'
+![Architecture Design](docs/colaboration_open/colaboration-open.svg)
 
-## Running end-to-end tests
+### Colaboration Diagram 'ProposeCombination Case'
+![Architecture Design](docs/colaboration_propose_combination/colaboration-propose-combination.svg)
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+## User Interface
 
-## Further help
+![app screenshot](docs/mm_ss_web1.webp)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![app screenshot](docs/mm_ss_web2.webp)
+
+![app screenshot](docs/mm_ss_web3.webp)

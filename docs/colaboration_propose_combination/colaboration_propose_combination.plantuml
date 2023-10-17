@@ -1,0 +1,41 @@
+@startuml colaboration-propose-combination
+!theme plain
+
+actor player
+
+package android-views{
+    agent playView
+    agent proposedCombinationView
+    agent colorPicker
+    agent boardView
+}
+package controllers <<master-mind-core dependency>> {
+    agent playController
+    agent proposedCombinationController
+}
+package models <<master-mind-core dependency>> {
+    agent session
+    agent registry
+    agent game
+    agent proposedCombination
+    agent combination
+    agent colors
+}
+
+player -right-> playView :addPropComb()
+playView -right-> boardView :addPropComb()
+boardView  --> proposedCombinationView :addPropComb()
+proposedCombinationView --> playController :addPropComb()
+proposedCombinationView .left.> colorPicker
+
+
+playController -right-> proposedCombinationController :addPropComb()
+proposedCombinationController -down-> session :addPropComb()\nnextAttempt\nregist()
+session -down-> game :addPropComb()\nnextAttempt
+session -down-> registry :regist()
+registry .left.> game
+game -down-> proposedCombination :add()
+proposedCombination .left.> combination
+combination .left.> colors
+
+@enduml
