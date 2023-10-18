@@ -1,13 +1,12 @@
 @startuml colaboration-propose-combination
 !theme plain
-
 actor player
 
-package android-views{
-    agent playView
-    agent proposedCombinationView
-    agent colorPicker
-    agent boardView
+package angular{
+    agent combinationPickerHTML
+    agent combinationPicker
+    agent playService
+    agent httpClient
 }
 package controllers <<master-mind-core dependency>> {
     agent playController
@@ -22,20 +21,32 @@ package models <<master-mind-core dependency>> {
     agent colors
 }
 
-player -right-> playView :addPropComb()
-playView -right-> boardView :addPropComb()
-boardView  --> proposedCombinationView :addPropComb()
-proposedCombinationView --> playController :addPropComb()
-proposedCombinationView .left.> colorPicker
+package spring-rest-views {
+    agent restPlayView <<@RestCotroller>>
+    agent boardDTO
+}
 
+'angular
+player -right-> combinationPickerHTML :addPropComb(comb)
+combinationPickerHTML -right-> combinationPicker :addPropComb(comb)
+combinationPicker --> playService :addPropComb(comb)
+playService -right-> httpClient :addPropComb(comb)
+httpClient -up-> restPlayView :put(comb)
 
-playController -right-> proposedCombinationController :addPropComb()
-proposedCombinationController -down-> session :addPropComb()\nnextAttempt\nregist()
+'spring
+restPlayView --> boardDTO :addPropComb(comb)
+boardDTO --> playController :addPropComb(comb)
+
+'controllers
+playController -left-> proposedCombinationController :addPropComb()
+proposedCombinationController --> session :addPropComb()\nnextAttempt\nregist()
+
+'models
 session -down-> game :addPropComb()\nnextAttempt
 session -down-> registry :regist()
 registry .left.> game
-game -down-> proposedCombination :add()
-proposedCombination .left.> combination
-combination .left.> colors
+game -left-> proposedCombination :add()
+proposedCombination ..> combination
+combination .right.> colors
 
 @enduml

@@ -10,21 +10,17 @@ package angular {
     agent httpClient
 }
 
-player -right-> startViewHTML :open(gameName)
-startViewHTML --> startViewComponent :open(gameName)
-startViewComponent --> startService :open(gameName)
-startService --> httpClient :get(gameName)
-
 package controllers <<master-mind-core dependency>> {
     agent startController
 }
 
-httpClient -left-> startController :get(gameName)
+package spring-rest-views {
+    agent restStartView <<@RestCotroller>>
+}
 
-package dao {
+package spring-dao {
     agent sessionImpDAO
-    agent gameDAO
-    agent propCombDAO
+    agent gameDAO <<Repository>>
     agent gameDTO
 }
 
@@ -34,16 +30,28 @@ package models <<master-mind-core dependency>>{
     agent game
 }
 
+'angular
+player -right-> startViewHTML :open()
+startViewHTML -right-> startViewComponent :open(gameName)
+startViewComponent --> startService :open(gameName)\ngetNames()
+startService -right-> httpClient :get(gameName)
+
+httpClient -up-> restStartView :get(gameName)
+restStartView --> startController :get(gameName)
+
+'controllers
 startController --> session :next()
 startController --> sessionImpDAO :load(gameSelectedTitle)\nassociate(this.session)
-sessionImpDAO --> gameDAO :getGame()
-sessionImpDAO --> propCombDAO :getPropCombs()
+
+'springDAO
+sessionImpDAO --> gameDAO :find(gameName)\ngetPropCombs(gameName)
 sessionImpDAO --> sessionDTO :load(game)
-sessionImpDAO --> gameDTO :getLoad(game)
-
-
-sessionDTO -right-> session :load(game) 
-sessionDTO ..> game 
+sessionImpDAO --> gameDTO :getLoadedGame()
 gameDTO -right-> game :new()
+gameDTO .left.> gameDAO
+
+'models
+sessionDTO -right-> session :load(game)
+sessionDTO ..> game
 
 @enduml
