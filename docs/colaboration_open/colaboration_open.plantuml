@@ -3,22 +3,23 @@
 
 actor player
 
-package android-views {
-    agent startView
-    agent openDialog
-    agent savedGamesRecyclerView
+package angular {
+    agent startViewHTML
+    agent startViewComponent
+    agent startService
+    agent httpClient
 }
 
-player -right-> startView :open()
-startView --> openDialog :show()
-openDialog --> savedGamesRecyclerView
+player -right-> startViewHTML :open(gameName)
+startViewHTML --> startViewComponent :open(gameName)
+startViewComponent --> startService :open(gameName)
+startService --> httpClient :get(gameName)
 
 package controllers <<master-mind-core dependency>> {
     agent startController
 }
 
-openDialog -left-> startController :start(gameSelectedTitle)
-savedGamesRecyclerView -left-> startController :getGamesNames()
+httpClient -left-> startController :get(gameName)
 
 package dao {
     agent sessionImpDAO
